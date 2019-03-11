@@ -1,5 +1,7 @@
 package rocks.zipcode.io.quiz3.arrays;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 import java.util.Arrays;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -9,10 +11,13 @@ import java.util.stream.Stream;
  */
 public class SquareArrayAnalyzer {
     public static Boolean compare(Integer[] input, Integer[] squaredValues) {
-
-
-        
-
-        return null;
+        Boolean answer = false;
+        for (int i = 0; i < input.length; i++) {
+            for (int j = 0; j < squaredValues.length; j++) {
+                if (Math.sqrt(input[i]) == squaredValues[j]) ;
+                    answer = true;
+            }
+        }
+            return answer;
     }
 }
