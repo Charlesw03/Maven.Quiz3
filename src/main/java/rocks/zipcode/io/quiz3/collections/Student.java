@@ -33,6 +33,7 @@ public class Student {
 
 
     public void forkLab(Lab lab) {
+
     }
 
     public LabStatus getLabStatus(String labName) {

@@ -14,14 +14,18 @@ public class ArrayUtility<SomeType> {
     }
 
     public SomeType findOddOccurringValue() {
+            int count = 0;
+        for (int i = 0; i <array.length ; i++) {
+            for (int j = 0; j <array.length ; j++) {
+                if(array[i]==array[j]){
+                    count++;
+                }
+            }
 
 
-
-        return null;
-
-
-
-    }
+        }
+            return null;
+}
 
     public SomeType findEvenOccurringValue() {
         return null;
