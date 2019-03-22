@@ -20,4 +20,22 @@ public class SquareArrayAnalyzer {
         }
             return answer;
     }
+
+
+//
+//    Arrays.sort(input);
+//        Arrays.sort(squaredValues);
+//
+//        for(int i = 0; i < input.length; i++) {
+//        int square = input[i] * input[i];
+//        if (square != squaredValues[i]) {
+//            return false;
+//        }
+//    }
+//
+//        return true;
+//}
+
 }
+
+

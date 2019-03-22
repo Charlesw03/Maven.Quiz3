@@ -3,6 +3,8 @@ package rocks.zipcode.io.quiz3.generics;
 import java.util.Arrays;
 import java.util.function.Function;
 
+import static java.util.Arrays.stream;
+
 /**
  * @author leon on 09/12/2018.
  */
@@ -14,28 +16,53 @@ public class ArrayUtility<SomeType> {
     }
 
     public SomeType findOddOccurringValue() {
-            int count = 0;
-        for (int i = 0; i <array.length ; i++) {
-            for (int j = 0; j <array.length ; j++) {
-                if(array[i]==array[j]){
-                    count++;
-                }
+        for(SomeType type : array) {
+            if (getNumberOfOccurrences(type) % 2 == 1) {
+                return type;
             }
-
-
         }
-            return null;
-}
+
+        return null;
+    }
 
     public SomeType findEvenOccurringValue() {
+        for(SomeType type : array) {
+            if (getNumberOfOccurrences(type) % 2 == 0) {
+                return type;
+            }
+        }
+
         return null;
     }
 
     public Integer getNumberOfOccurrences(SomeType valueToEvaluate) {
-        return null;
+        int counter = 0;
+        for(SomeType type : array) {
+            if (valueToEvaluate.equals(type)) {
+                counter++;
+            }
+        }
+
+
+        return counter;
     }
 
     public SomeType[] filter(Function<SomeType, Boolean> predicate) {
-        return null;
+//        List<SomeType> filtered = new ArrayList<>();
+//
+//        for(SomeType type : array) {
+//            if (predicate.apply(type)){
+//                filtered.add(type);
+//            }
+//        }
+//
+//        SomeType[] newArray = Arrays.copyOf(array, filtered.size());
+//        return filtered.toArray(newArray);
+//
+//
+
+        return Arrays.stream(array)
+                .filter(element -> predicate.apply(element))
+                .toArray(size -> Arrays.copyOf(array, size));
     }
 }

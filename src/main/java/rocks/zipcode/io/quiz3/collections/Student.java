@@ -1,51 +1,65 @@
 package rocks.zipcode.io.quiz3.collections;
 
+import com.sun.tools.corba.se.idl.StringGen;
 import rocks.zipcode.io.quiz3.objectorientation.enums.LabStatus;
 
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * @author leon on 10/12/2018.
  */
 public class Student {
-  private String labName;
-  private LabStatus labStatus;
-  private Map<Lab,LabStatus> labMap;
+    private Map<Lab, LabStatus> statuses;
 
     public Student() {
-        this(null);
+        this.statuses = new TreeMap<>();
     }
 
     public Student(Map<Lab, LabStatus> map) {
-        this.labMap = map;
+        this.statuses = map;
     }
 
     public Lab getLab(String labName) {
+        for(Lab lab : statuses.keySet()) {
+            if (labName.equals(lab.getName())) {
+                return lab;
+            }
+        }
 
         return null;
     }
 
     public void setLabStatus(String labName, LabStatus labStatus) {
-                this.labName = labName;
-                this.labStatus = labStatus;
-
+        Lab lab = getLab(labName);
+        if (lab == null) {
+            throw new UnsupportedOperationException();
+        }
+        statuses.put(lab, labStatus);
     }
 
 
     public void forkLab(Lab lab) {
-
+        statuses.put(lab, LabStatus.PENDING);
     }
 
     public LabStatus getLabStatus(String labName) {
-                    return null;
+        Lab lab = getLab(labName);
+        return statuses.get(lab);
     }
 
     @Override
-    public String toString() {
-        return "Student{" +
-                "labName='" + labName + '\'' +
-                ", labStatus=" + labStatus +
-                ", labMap=" + labMap +
-                '}';
+    public String toString(){
+        StringBuilder builder = new StringBuilder();
+
+        for (Map.Entry<Lab, LabStatus> entry : statuses.entrySet()) {
+            builder.append(entry.getKey().getName());
+            builder.append(" > ");
+            builder.append(entry.getValue().toString());
+            builder.append("\n");
+        }
+
+        builder.deleteCharAt(builder.length() - 1);
+        return builder.toString();
     }
 }
